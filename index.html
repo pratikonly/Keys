@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Website with Copy Message Feature</title>
+    <style>
+        /* Default dark mode styles */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        h1, h2 {
+            color: #f1f1f1;
+        }
+
+        .message-box {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .message-box h2 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #f1f1f1;
+        }
+
+        .message-box p {
+            color: #ccc;
+        }
+
+        .message-box code {
+            background-color: #444;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #e0e0e0;
+        }
+
+        /* Copy button */
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #f1f1f1;
+        }
+
+        .copy-btn:hover {
+            color: #00ffcc;
+        }
+
+        /* Light mode styles */
+        .light-mode {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .light-mode h1, 
+        .light-mode h2 {
+            color: #222;
+        }
+
+        .light-mode .message-box {
+            background-color: #ddd;
+            color: #111;
+        }
+
+        .light-mode .message-box h2 {
+            color: #222;
+        }
+
+        .light-mode .message-box code {
+            background-color: #ccc;
+            color: #222;
+        }
+
+        .light-mode .copy-btn {
+            color: #222;
+        }
+
+        .light-mode .copy-btn:hover {
+            color: #007bff;
+        }
+
+        /* Button for toggling dark mode */
+        .mode-toggle {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .mode-toggle:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Dark Mode Website!</h1>
+
+    <div class="message-box">
+        <button class="copy-btn" onclick="copyMessage(this)">📋</button>
+        <h2>ashishkumarsinghx</h2>
+        <p><code>EsUD hDtw 12ZX gZH1 qgEi BgM6 W6Hn Sf1L js6P A1n1 UXQW 5QcUs</code></p>
+    </div>
+
+    <div class="message-box">
+        <button class="copy-btn" onclick="copyMessage(this)">📋</button>
+        <h2>pratikonly</h2>
+        <p><code>EsTz ETLm SLDA U3fX dX2k SRiY AM3M jjZ5 KRru 5dLU Q2ft Shpa</code></p>
+    </div>
+
+    <div class="message-box">
+        <button class="copy-btn" onclick="copyMessage(this)">📋</button>
+        <h2>Message Box 3</h2>
+        <p>This box can contain any type of content. You can use <code>HTML</code> to add rich elements.</p>
+    </div>
+
+    <button class="mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            const isDarkMode = body.classList.toggle('light-mode');
+
+            // Store preference in localStorage
+            localStorage.setItem('darkMode', isDarkMode ? 'light' : 'dark');
+        }
+
+        // Load stored mode preference on page load
+        (function () {
+            const savedMode = localStorage.getItem('darkMode');
+            if (savedMode === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        })();
+
+        function copyMessage(button) {
+            // Find the parent message-box
+            const messageBox = button.parentElement;
+            
+            // Get all the text inside (excluding the button)
+            const messageText = messageBox.innerText.replace("📋", "").trim();
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(messageText).then(() => {
+                alert("Message copied!");
+            }).catch(err => console.error("Error copying text: ", err));
+        }
+    </script>
+
+</body>
+</html>
